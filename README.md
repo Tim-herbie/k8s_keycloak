@@ -62,4 +62,4 @@ The most variables are defined in the Makefile like versions, namespaces and you
 Additional you can increae the instances of the PostgreSQL setup in the postgres-db.yaml file. 
 
 ### NodeAffinity
-Please also ensure to use outcommented nodeAffinity option to spread your pods on different nodes. 
+Also, please make sure to use the commented out **nodeAffinity** option to distribute your pods across different nodes.
