@@ -1,0 +1,34 @@
+apiVersion: acid.zalan.do/v1
+kind: postgresql
+metadata:
+  name: keycloak-postgres-db
+spec:
+  teamId: keycloak
+  postgresql:
+    version: "14"
+    parameters:
+      max_connections: "200"
+  numberOfInstances: 3
+  volume:
+    size: "5Gi"
+  users:
+    keycloak:
+      - superuser
+      - createdb
+  databases:
+    bitnami_keycloak: keycloak
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      cpu: 50m
+      memory: 200Mi
+  # nodeAffinity:
+  #   requiredDuringSchedulingIgnoredDuringExecution:
+  #     nodeSelectorTerms:
+  #       - matchExpressions:
+  #           - key: node-role.kubernetes.io/worker
+  #             operator: In
+  #             values:
+  #               - "true"

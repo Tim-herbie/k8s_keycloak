@@ -1,0 +1,9 @@
+postgresql:
+  enabled: false
+
+externalDatabase:
+  port: 5432
+  user: keycloak
+  database: bitnami_keycloak
+  existingSecretPasswordKey: "password"
+  existingSecret: "keycloak.keycloak-postgres-db.credentials.postgresql.acid.zalan.do"
