@@ -5,6 +5,7 @@
 # PostgreSQL OPERATOR Variables
 PostgreSQL_OPERATOR_NAMESPACE := postgres
 PostgreSQL_OPERATOR_VERSION := 1.10.1
+POSTGRES_OPERATOR_CHECK = $(shell kubectl get pods -A -l app.kubernetes.io/name=postgres-operator)
 
 # Keycloak Variables
 KEYCLOAK_NAMESPACE := keycloak
@@ -29,12 +30,16 @@ prep:
 	helm repo add bitnami https://charts.bitnami.com/bitnami
 	
 install-postgresql-operator:
+ifneq ($(strip $(POSTGRES_OPERATOR_CHECK)),)
+	$(info Postgres Operator is already installed. Nothing to do here.)
+else
 	helm upgrade --install postgres-operator \
 	--set configKubernetes.enable_pod_antiaffinity=true \
 	--set configKubernetes.enable_readiness_probe=true \
 	--namespace $(PostgreSQL_OPERATOR_NAMESPACE) \
 	--version=$(PostgreSQL_OPERATOR_VERSION) \
 	postgres-operator-charts/postgres-operator
+endif
 
 database-install:
 	kubectl -n $(KEYCLOAK_NAMESPACE) apply -f postgres-db.yaml
