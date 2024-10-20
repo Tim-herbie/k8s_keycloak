@@ -39,7 +39,7 @@ make all
 ### Keycloak Access
 If you installed the Ingresscontroller Traefik, you can use this snippet to make your application reachable from outside the kubernetes cluster:
 ```
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: keycloak
