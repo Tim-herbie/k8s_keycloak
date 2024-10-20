@@ -4,12 +4,12 @@
 
 # PostgreSQL OPERATOR Variables
 PostgreSQL_OPERATOR_NAMESPACE := postgres
-PostgreSQL_OPERATOR_VERSION := 1.10.1
+PostgreSQL_OPERATOR_VERSION := 1.13.0
 POSTGRES_OPERATOR_CHECK = $(shell kubectl get pods -A -l app.kubernetes.io/name=postgres-operator)
 
 # Keycloak Variables
 KEYCLOAK_NAMESPACE := keycloak
-KEYCLOAK_VERSION := 18.7.1
+KEYCLOAK_VERSION := 23.0.0
 KEYCLOAK_REPLICA := 2
 KEYCLOAK_URL := https://keycloak.example.com
 
@@ -66,6 +66,8 @@ install-keycloak:
     --set extraEnvVars[0].value=$(KEYCLOAK_URL) \
     --set extraEnvVars[1].name=KC_HOSTNAME_ADMIN_URL \
     --set extraEnvVars[1].value=$(KEYCLOAK_URL) \
+	--set extraEnvVars[2].name=KC_PROXY_HEADERS \
+    --set extraEnvVars[2].value=xforwarded \
 	--set externalDatabase.host=keycloak-postgres-db.$(KEYCLOAK_NAMESPACE).svc.cluster.local \
 	bitnami/keycloak
 
