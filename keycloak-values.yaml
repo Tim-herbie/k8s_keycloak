@@ -7,3 +7,11 @@ externalDatabase:
   database: bitnami_keycloak
   existingSecretPasswordKey: "password"
   existingSecret: "keycloak.keycloak-postgres-db.credentials.postgresql.acid.zalan.do"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    cpu: 1
+    memory: 1024Mi
