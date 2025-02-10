@@ -9,10 +9,9 @@ POSTGRES_OPERATOR_CHECK = $(shell kubectl get pods -A -l app.kubernetes.io/name=
 
 # Keycloak Variables
 KEYCLOAK_NAMESPACE := keycloak
-KEYCLOAK_VERSION := 23.0.0
+KEYCLOAK_VERSION := 24.4.4
 KEYCLOAK_REPLICA := 2
 KEYCLOAK_URL := https://keycloak.example.com
-
 
 ###########################
 ### Deployment Section ####
